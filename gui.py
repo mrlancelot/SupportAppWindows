@@ -1,5 +1,5 @@
 from pathlib import Path
-from tkinter import Tk, Canvas, Button, PhotoImage
+from tkinter import Tk, Canvas, Button, PhotoImage, Text, Entry, Scrollbar, END
 import platform
 import psutil
 import socket
@@ -17,6 +17,31 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets/frame0")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def start_chat_interface():
+    # Clear the existing widgets
+    for widget in window.winfo_children():
+        widget.destroy()
+
+    chat_history_text = Text(window, height=20, width=50)
+    chat_history_text.pack(padx=20, pady=20)
+
+    # Scrollbar for the chat history
+    scrollbar = Scrollbar(window, command=chat_history_text.yview)
+    scrollbar.pack(side='right', fill='y')
+    chat_history_text['yscrollcommand'] = scrollbar.set
+
+    entry_text = Entry(window, width=43)
+    entry_text.pack(padx=20, pady=(0,20))
+    entry_text.bind("<Return>", lambda event: send_message(entry_text, chat_history_text))
+
+def send_message(entry_widget, chat_history_widget):
+    message = entry_widget.get()
+    if message:  # If the message is not empty
+        # Here you can add the functionality to process the message and generate a response
+        chat_history_widget.insert(END, "You: " + message + "\n")
+        # Example response (Replace this with actual processing logic)
+        chat_history_widget.insert(END, "Sammy: " + "How can I help you?" + "\n")
+    entry_widget.delete(0, END)  # Clear the input field
 
 window = Tk()
 
@@ -97,7 +122,7 @@ canvas.create_text(
 )
 
 button_image_2 = PhotoImage(
-    file=relative_to_assets("reboot.png"))
+    file=relative_to_assets("deadline.png"))
 button_2 = Button(
     image=button_image_2,
     borderwidth=0,
@@ -152,7 +177,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_6 clicked"),
+    command=start_chat_interface,
     relief="flat"
 )
 button_3.place(
@@ -259,7 +284,7 @@ canvas.create_text(
     435.0,
     400.0,
     anchor="nw",
-    text="189",
+    text="4 days left",
     fill="#333333",
     font=("Poppins SemiBold", 14 * -1)
 )
@@ -300,13 +325,13 @@ canvas.create_text(
     103.53213500976562,
     491.9176025390625,
     anchor="nw",
-    text="Active \n Now",
+    text="Help \n Center",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_7 = PhotoImage(
-    file=relative_to_assets("button_7.png"))
+    file=relative_to_assets("group.png"))
 button_7 = Button(
     image=button_image_7,
     borderwidth=0,
@@ -325,13 +350,13 @@ canvas.create_text(
     295.4559020996094,
     491.25341796875,
     anchor="nw",
-    text="Active \n Now",
+    text="Help \n Desk",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_8 = PhotoImage(
-    file=relative_to_assets("button_5.png"))
+    file=relative_to_assets("help-desk.png"))
 button_8 = Button(
     image=button_image_8,
     borderwidth=0,
@@ -350,13 +375,13 @@ canvas.create_text(
     448.99725341796875,
     492.0,
     anchor="nw",
-    text="Active \n Now",
+    text="Mac \n Q&A",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_9 = PhotoImage(
-    file=relative_to_assets("button_6.png"))
+    file=relative_to_assets("question.png"))
 button_9 = Button(
     image=button_image_9,
     borderwidth=0,
@@ -399,13 +424,13 @@ canvas.create_text(
     106.5321273803711,
     599.9176025390625,
     anchor="nw",
-    text="Active \n Now",
+    text="My \n Assistant",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_10 = PhotoImage(
-    file=relative_to_assets("button_12.png"))
+    file=relative_to_assets("message.png"))
 button_10 = Button(
     image=button_image_10,
     borderwidth=0,
@@ -424,13 +449,13 @@ canvas.create_text(
     298.4559020996094,
     599.25341796875,
     anchor="nw",
-    text="Active \n Now",
+    text="DX",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_11 = PhotoImage(
-    file=relative_to_assets("button_10.png"))
+    file=relative_to_assets("documents.png"))
 button_11 = Button(
     image=button_image_11,
     borderwidth=0,
@@ -449,13 +474,13 @@ canvas.create_text(
     451.99725341796875,
     600.0,
     anchor="nw",
-    text="Active \n Now",
+    text="App \n Updates",
     fill="#000000",
     font=("Poppins Regular", 14 * -1)
 )
 
 button_image_12 = PhotoImage(
-    file=relative_to_assets("button_11.png"))
+    file=relative_to_assets("update.png"))
 button_12 = Button(
     image=button_image_12,
     borderwidth=0,

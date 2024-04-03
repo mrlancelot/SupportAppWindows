@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtWidgets import QApplication, QSystemTrayIcon, QMenu
 from PyQt5.QtGui import QIcon
-import subprocess  # Import subprocess
+import subprocess
 
 class SystemTrayApp(QSystemTrayIcon):
     def __init__(self, icon, parent=None):
@@ -23,7 +23,7 @@ class SystemTrayApp(QSystemTrayIcon):
 
 def main():
     app = QApplication(sys.argv)
-    trayIcon = SystemTrayApp(QIcon("assets/frame0/key.png")) # Ensure you have an icon.png in your directory or change the path to a valid icon
+    trayIcon = SystemTrayApp(QIcon("assets/frame0/walmart.png")) # Ensure you have an icon.png in your directory or change the path to a valid icon
     trayIcon.show()
     sys.exit(app.exec_())
 

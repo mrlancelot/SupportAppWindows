@@ -1,6 +1,2 @@
-tkinter
-platform
 psutil
-socket
-pathlib
 PyQt5
